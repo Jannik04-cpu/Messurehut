@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.ActionBar;
@@ -24,5 +25,15 @@ public class SchallpegelmesserActivity extends AppCompatActivity {
         if(actionBar != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        if(itemId == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

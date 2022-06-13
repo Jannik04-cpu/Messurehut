@@ -14,18 +14,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle(getString(R.string.app_name));
-        ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            actionBar.setIcon(R.drawable.icon_messurehut);
-        }
-
-
-
     }
 
-    public void onClick(View v){
+    public void onClickEar(View v){
         Intent intent = new Intent(getApplicationContext(), SchallpegelmesserActivity.class);
+        startActivity(intent);
+    }
+
+    public void onClickSpirit(View v){
+        Intent intent = new Intent(getApplicationContext(), SpiritLevelActivity.class);
         startActivity(intent);
     }
 }
