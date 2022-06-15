@@ -3,12 +3,9 @@ package com.example.messurehut;
 import static java.lang.String.valueOf;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -22,7 +19,6 @@ public class SchallpegelmesserActivity extends AppCompatActivity {
 
 
     Soundmeter soundmeter;
-
 
 
     @Override
@@ -41,13 +37,13 @@ public class SchallpegelmesserActivity extends AppCompatActivity {
         maxDecibelValue.setText(String.valueOf(intent.getIntExtra("maxDecibel", 100)));
 
 
-        if(actionBar != null){
+        if (actionBar != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         soundmeter = new Soundmeter(this);
 
-        soundmeter.start(this,this);
+        soundmeter.start(this, this);
 
 
     }
@@ -61,23 +57,23 @@ public class SchallpegelmesserActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-        if(itemId == android.R.id.home) {
+        if (itemId == android.R.id.home) {
             onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClickRecord(View v){
+    public void onClickRecord(View v) {
         soundmeter = new Soundmeter(this);
         soundmeter.start(this, this);
     }
 
-    public void onClickStop(View v){
+    public void onClickStop(View v) {
         TextView decibelValue = findViewById(R.id.decibel);
-        if(soundmeter.mediaRecorder.getMaxAmplitude() != 0) {
+        if (soundmeter.mediaRecorder.getMaxAmplitude() != 0) {
             decibelValue.setText(valueOf(soundmeter.mediaRecorder.getMaxAmplitude()));
-        }else{
+        } else {
             AlertDialog.Builder alertBox = new AlertDialog.Builder(this);
             alertBox.setMessage("Mikrofon funktioniert möglicherweise nicht. Nochmals versuchen?");
             alertBox.setTitle("Microphone does not work");

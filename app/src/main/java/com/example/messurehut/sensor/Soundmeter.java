@@ -4,12 +4,10 @@ import static android.media.AudioManager.MODE_NORMAL;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.MediaRecorder;
-import android.provider.MediaStore;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -23,15 +21,15 @@ public class Soundmeter {
 
     private static int MICROPHONE_PERMISSION_CODE = 200;
 
-    public Soundmeter(Activity activity){
+    public Soundmeter(Activity activity) {
         mediaRecorder = new MediaRecorder(activity.getApplicationContext());
     }
 
-    public void start(Context context, Activity activity){
+    public void start(Context context, Activity activity) {
 
         System.out.println("Ist Mikrofon verfügbar: " + isMicrophoneAvailable(context));
 
-        if(isMicrophoneAvailable(context)) {
+        if (isMicrophoneAvailable(context)) {
             getMicrophonePermission(context, activity);
         }
 
@@ -40,30 +38,30 @@ public class Soundmeter {
         mediaRecorder.setOutputFile(context.getFilesDir() + "test");
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
 
-        try{
+        try {
             mediaRecorder.prepare();
-        } catch (IllegalStateException | IOException e){
+        } catch (IllegalStateException | IOException e) {
             e.printStackTrace();
         }
 
         mediaRecorder.start();
     }
 
-    public void stop(){
-        if(mediaRecorder != null){
+    public void stop() {
+        if (mediaRecorder != null) {
             mediaRecorder.stop();
             mediaRecorder.release();
             mediaRecorder = null;
         }
     }
 
-    public double getDecibel(){
+    public double getDecibel() {
         Double doubel = 20 * Math.log10(mediaRecorder.getMaxAmplitude() / 2700.0);
         return doubel;
     }
 
-    private void getMicrophonePermission(Context context, Activity activity){
-        if(ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+    private void getMicrophonePermission(Context context, Activity activity) {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity, new String[]
                     {Manifest.permission.RECORD_AUDIO}, MICROPHONE_PERMISSION_CODE);
         }

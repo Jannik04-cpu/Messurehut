@@ -8,13 +8,13 @@ import android.hardware.SensorManager;
 
 public class RotationVector {
 
-    public interface Listener{
+    public interface Listener {
         void onRotation(float rx, float ry, float rz);
     }
 
     private Listener listener;
 
-    public void setListener(Listener l){
+    public void setListener(Listener l) {
         listener = l;
     }
 
@@ -22,13 +22,13 @@ public class RotationVector {
     private Sensor sensor;
     private SensorEventListener sensorEventListener;
 
-    public RotationVector(Context context){
+    public RotationVector(Context context) {
         sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
         sensorEventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
-                if(listener != null){
+                if (listener != null) {
                     listener.onRotation(sensorEvent.values[0], sensorEvent.values[1], sensorEvent.values[2]);
                 }
             }
@@ -40,11 +40,11 @@ public class RotationVector {
         };
     }
 
-    public void register(){
+    public void register() {
         sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
-    public void unregister(){
+    public void unregister() {
         sensorManager.unregisterListener(sensorEventListener);
     }
 }

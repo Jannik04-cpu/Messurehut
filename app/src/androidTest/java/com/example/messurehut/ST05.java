@@ -37,46 +37,46 @@ public class ST05 {
     @Test
     public void sT05() {
         ViewInteraction appCompatEditText = onView(
-allOf(withId(R.id.editTextTextPersonName),
-childAtPosition(
-childAtPosition(
-withId(android.R.id.content),
-0),
-2),
-isDisplayed()));
+                allOf(withId(R.id.editTextTextPersonName),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
         appCompatEditText.perform(replaceText("t"), closeSoftKeyboard());
-        
+
         ViewInteraction appCompatEditText2 = onView(
-allOf(withId(R.id.editTextTextPersonName), withText("t"),
-childAtPosition(
-childAtPosition(
-withId(android.R.id.content),
-0),
-2),
-isDisplayed()));
+                allOf(withId(R.id.editTextTextPersonName), withText("t"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
         appCompatEditText2.perform(click());
-        
+
         ViewInteraction appCompatEditText3 = onView(
-allOf(withId(R.id.editTextTextPersonName), withText("t"),
-childAtPosition(
-childAtPosition(
-withId(android.R.id.content),
-0),
-2),
-isDisplayed()));
+                allOf(withId(R.id.editTextTextPersonName), withText("t"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
         appCompatEditText3.perform(replaceText("1"));
-        
+
         ViewInteraction appCompatEditText4 = onView(
-allOf(withId(R.id.editTextTextPersonName), withText("1"),
-childAtPosition(
-childAtPosition(
-withId(android.R.id.content),
-0),
-2),
-isDisplayed()));
+                allOf(withId(R.id.editTextTextPersonName), withText("1"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                2),
+                        isDisplayed()));
         appCompatEditText4.perform(closeSoftKeyboard());
-        }
-    
+    }
+
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
 
@@ -91,8 +91,8 @@ isDisplayed()));
             public boolean matchesSafely(View view) {
                 ViewParent parent = view.getParent();
                 return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                        && view.equals(((ViewGroup)parent).getChildAt(position));
+                        && view.equals(((ViewGroup) parent).getChildAt(position));
             }
         };
     }
-    }
+}

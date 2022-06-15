@@ -1,29 +1,16 @@
 package com.example.messurehut;
 
-import static java.lang.String.valueOf;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.service.autofill.RegexValidator;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 import android.widget.TextView;
 
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
@@ -54,21 +41,21 @@ public class MainActivity extends AppCompatActivity {
                 boolean isMatch = Pattern.compile("^[0-9]*$")
                         .matcher(txtMaxdB.getText().toString())
                         .find();
-                if(!isMatch){
+                if (!isMatch) {
                     txtMaxdB.setError("Es dürfen nur Zahlen eingegeben werden");
                 }
             }
         });
     }
 
-    public void onClickEar(View v){
+    public void onClickEar(View v) {
         Intent intent = new Intent(getApplicationContext(), SchallpegelmesserActivity.class);
         TextView decibelValueMain = findViewById(R.id.editTextTextPersonName);
         intent.putExtra("maxDecibel", Integer.parseInt(decibelValueMain.getText().toString()));
         startActivity(intent);
     }
 
-    public void onClickSpirit(View v){
+    public void onClickSpirit(View v) {
         Intent intent = new Intent(getApplicationContext(), SpiritLevelActivity.class);
         startActivity(intent);
     }

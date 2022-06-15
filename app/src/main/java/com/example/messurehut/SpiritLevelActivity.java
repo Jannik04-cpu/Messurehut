@@ -1,8 +1,5 @@
 package com.example.messurehut;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.messurehut.sensor.RotationVector;
 
@@ -27,23 +27,23 @@ public class SpiritLevelActivity extends AppCompatActivity {
         setTitle("Wasserwaage");
 
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null){
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         rotationVector = new RotationVector(this);
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
 
-        TextView X = (TextView)findViewById(R.id.X);
-        TextView Y = (TextView)findViewById(R.id.Y);
+        TextView X = (TextView) findViewById(R.id.X);
+        TextView Y = (TextView) findViewById(R.id.Y);
 
-        ImageView imgUp = (ImageView)findViewById(R.id.up);
-        ImageView imgDown = (ImageView)findViewById(R.id.down);
-        ImageView imgLeft = (ImageView)findViewById(R.id.left);
-        ImageView imgRight = (ImageView)findViewById(R.id.right);
+        ImageView imgUp = (ImageView) findViewById(R.id.up);
+        ImageView imgDown = (ImageView) findViewById(R.id.down);
+        ImageView imgLeft = (ImageView) findViewById(R.id.left);
+        ImageView imgRight = (ImageView) findViewById(R.id.right);
 
         rotationVector.setListener(new RotationVector.Listener() {
             @Override
@@ -56,21 +56,18 @@ public class SpiritLevelActivity extends AppCompatActivity {
                 imgLeft.setVisibility(View.INVISIBLE);
                 imgRight.setVisibility(View.INVISIBLE);
 
-                if(Float.parseFloat(String.format("%.2f", rx)) > 0f){
+                if (Float.parseFloat(String.format("%.2f", rx)) > 0f) {
                     imgDown.setVisibility(View.VISIBLE);
-                }
-                else if(Float.parseFloat(String.format("%.2f", rx)) < 0f){
+                } else if (Float.parseFloat(String.format("%.2f", rx)) < 0f) {
                     imgUp.setVisibility(View.VISIBLE);
                 }
-                if(Float.parseFloat(String.format("%.2f", ry)) > 0f){
+                if (Float.parseFloat(String.format("%.2f", ry)) > 0f) {
                     imgRight.setVisibility(View.VISIBLE);
-                }
-                else if(Float.parseFloat(String.format("%.2f", ry)) < 0f){
+                } else if (Float.parseFloat(String.format("%.2f", ry)) < 0f) {
                     imgLeft.setVisibility(View.VISIBLE);
                 }
 
-
-                if(rx == 0.0f && ry == 0.0f){
+                if (rx == 0.0000000000f && ry == 0.0000000000f && rz == 0.0000000000f) {
                     AlertDialog.Builder alertBox = new AlertDialog.Builder(SpiritLevelActivity.this);
                     alertBox.setMessage("Sensoren funktionieren möglicherweise nicht. Nochmals versuchen?");
                     alertBox.setTitle("Sensor does not work");
@@ -95,14 +92,14 @@ public class SpiritLevelActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
 
         rotationVector.register();
     }
 
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
 
         rotationVector.unregister();
@@ -111,7 +108,7 @@ public class SpiritLevelActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-        if(itemId == android.R.id.home) {
+        if (itemId == android.R.id.home) {
             onBackPressed();
             return true;
         }
