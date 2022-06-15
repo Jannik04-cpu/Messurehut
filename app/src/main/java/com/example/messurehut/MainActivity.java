@@ -10,13 +10,26 @@ import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.service.autofill.RegexValidator;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.Toast;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
+
+    EditText txtMaxdB;
+    ImageButton btSchallpegelmesser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +37,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle(getString(R.string.app_name));
 
+        txtMaxdB = findViewById(R.id.editTextTextPersonName);
+        btSchallpegelmesser = findViewById(R.id.imageButton3);
 
-        final SensorManager sensorManager;
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
+        txtMaxdB.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                boolean isMatch = Pattern.compile("^[0-9]*$")
+                        .matcher(txtMaxdB.getText().toString())
+                        .find();
+                if(!isMatch){
+                    txtMaxdB.setError("Es dürfen nur Zahlen eingegeben werden");
+                }
+            }
+        });
     }
 
     public void onClickEar(View v){
