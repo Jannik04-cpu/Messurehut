@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/bvonbl/AndroidStudioProjects/Messurehut/app/src/main/res/layout/activity_spirit_level.xml" value="0.33" />
+        <entry key="..\:/355/Messurehut/app/src/main/res/drawable/round_button.xml" value="0.1" />
+        <entry key="..\:/355/Messurehut/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/355/Messurehut/app/src/main/res/layout/activity_schallpegel.xml" value="0.14" />
+        <entry key="..\:/355/Messurehut/app/src/main/res/layout/activity_spirit_level.xml" value="0.16847826086956522" />
       </map>
     </option>
   </component>

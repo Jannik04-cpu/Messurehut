@@ -3,6 +3,9 @@ package com.example.messurehut;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,7 +30,6 @@ public class SpiritLevelActivity extends AppCompatActivity {
         if(actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-//        gyroscope = new Gyroscope(this);
         rotationVector = new RotationVector(this);
     }
 
@@ -65,6 +67,28 @@ public class SpiritLevelActivity extends AppCompatActivity {
                 }
                 else if(Float.parseFloat(String.format("%.2f", ry)) < 0f){
                     imgLeft.setVisibility(View.VISIBLE);
+                }
+
+
+                if(rx == 0.0f && ry == 0.0f){
+                    AlertDialog.Builder alertBox = new AlertDialog.Builder(SpiritLevelActivity.this);
+                    alertBox.setMessage("Sensoren funktionieren möglicherweise nicht. Nochmals versuchen?");
+                    alertBox.setTitle("Sensor does not work");
+                    alertBox.setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getApplicationContext(), SpiritLevelActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    alertBox.setNegativeButton("Nein", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                    alertBox.create().show();
                 }
             }
         });

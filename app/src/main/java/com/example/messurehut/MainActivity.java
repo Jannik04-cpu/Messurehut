@@ -1,5 +1,7 @@
 package com.example.messurehut;
 
+import static java.lang.String.valueOf;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,10 +16,12 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -59,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickEar(View v){
         Intent intent = new Intent(getApplicationContext(), SchallpegelmesserActivity.class);
+        TextView decibelValueMain = findViewById(R.id.editTextTextPersonName);
+        intent.putExtra("maxDecibel", Integer.parseInt(decibelValueMain.getText().toString()));
         startActivity(intent);
     }
 

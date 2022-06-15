@@ -26,14 +26,14 @@
         android:layout_width="213dp"
         android:layout_height="181dp"
         android:background="@drawable/icon_spirit_level_1"
-        android:visibility="visible"
         android:onClick="onClickSpirit"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.57"
+        app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.17000002"
+        app:layout_constraintVertical_bias="0.176"
         tools:visibility="visible" />
 
     <EditText
